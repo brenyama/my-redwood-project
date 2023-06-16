@@ -1,5 +1,5 @@
 const MenuItem = ({
-  menuItem = {},
+  menuItem,
 }) => {
   const {id, name, recipe} = menuItem
   return (

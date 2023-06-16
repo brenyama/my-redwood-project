@@ -28,7 +28,7 @@ const Menu = ({
   }
 
   return (
-    <div className='flex flex-col align-center w-1/3 h-full bg-slate-200 py-4'>
+    <div className='flex flex-col h-full align-center bg-slate-100 py-4 px-2 rounded-lg'>
       <h2 className='text-center'>Menu {id}</h2>
       <button onClick={onAddMenuItem}>Add Item +</button>
       {
