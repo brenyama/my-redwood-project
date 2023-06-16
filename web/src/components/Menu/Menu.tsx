@@ -3,7 +3,9 @@ import { useMutation } from "@redwoodjs/web"
 const CREATE_MENU_ITEM = gql`
   mutation createMenuItemMutation($input: CreateMenuItemInput!) {
     createMenuItem(input: $input) {
-      id
+      id,
+      recipeId,
+      menuId,
     }
   }
 `

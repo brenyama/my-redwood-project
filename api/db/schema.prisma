@@ -21,7 +21,7 @@ model Recipe {
   id              Int              @id @default(autoincrement())
   name            String           @unique
   recipeNutrients RecipeNutrient[]
-  MenuItem        MenuItem?
+  menuItems       MenuItem[]
   servingSize     Int
   servingUnit     String
 }
@@ -51,7 +51,7 @@ model Menu {
 model MenuItem {
   id           Int    @id @default(autoincrement())
   recipe       Recipe @relation(fields: [recipeId], references: [id])
-  recipeId     Int    @unique
+  recipeId     Int
   menu         Menu   @relation(fields: [menuId], references: [id])
   menuId       Int
   servingValue Int
