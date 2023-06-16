@@ -80,6 +80,27 @@ export default async () => {
       })
     )
 
+    const recipeData: Prisma.RecipeCreateArgs['data'][] = [
+      {name: 'Pepperoni Pizza', servingSize: 0, servingUnit: 'cups'},
+      {name: 'Cheese Pizza', servingSize: 0, servingUnit: 'cups'},
+      {name: 'Organic Apple', servingSize: 0, servingUnit: 'cups'},
+    ]
+    console.log(
+      "\nUsing the default './scripts/seed.{js,ts}' template\nEdit the file to add seed data\n"
+    )
+
+    // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
+    // @see: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
+    Promise.all(
+      //
+      // Change to match your data model and seeding needs
+      //
+      recipeData.map(async (data: Prisma.RecipeCreateArgs['data']) => {
+        const record = await db.recipe.create({ data })
+        console.log(record)
+      })
+    )
+
 
   } catch (error) {
     console.warn('Please define your seed data.')
