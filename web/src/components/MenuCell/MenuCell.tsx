@@ -6,6 +6,12 @@ export const QUERY = gql`
   query FindMenuQuery($id: Int!) {
     menu: menu(id: $id) {
       id
+      menuItems {
+        id
+        menuId
+        recipeId
+        servingValue
+      }
     }
   }
 `

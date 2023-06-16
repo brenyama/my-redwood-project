@@ -22,18 +22,6 @@ export default async () => {
       "\nUsing the default './scripts/seed.{js,ts}' template\nEdit the file to add seed data\n"
     )
 
-    // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
-    // @see: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
-    Promise.all(
-      //
-      // Change to match your data model and seeding needs
-      //
-      data.map(async (data: Prisma.UserExampleCreateArgs['data']) => {
-        const record = await db.userExample.create({ data })
-        console.log(record)
-      })
-    )
-
     // If using dbAuth and seeding users, you'll need to add a `hashedPassword`
     // and associated `salt` to their record. Here's how to create them using
     // the same algorithm that dbAuth uses internally:
@@ -64,30 +52,12 @@ export default async () => {
       {date: new Date()},
       {date: new Date()},
     ]
-    console.log(
-      "\nUsing the default './scripts/seed.{js,ts}' template\nEdit the file to add seed data\n"
-    )
-
-    // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
-    // @see: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
-    Promise.all(
-      //
-      // Change to match your data model and seeding needs
-      //
-      menuData.map(async (data: Prisma.MenuCreateArgs['data']) => {
-        const record = await db.menu.create({ data })
-        console.log(record)
-      })
-    )
 
     const recipeData: Prisma.RecipeCreateArgs['data'][] = [
       {name: 'Pepperoni Pizza', servingSize: 0, servingUnit: 'cups'},
       {name: 'Cheese Pizza', servingSize: 0, servingUnit: 'cups'},
       {name: 'Organic Apple', servingSize: 0, servingUnit: 'cups'},
     ]
-    console.log(
-      "\nUsing the default './scripts/seed.{js,ts}' template\nEdit the file to add seed data\n"
-    )
 
     // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
     // @see: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
@@ -95,11 +65,21 @@ export default async () => {
       //
       // Change to match your data model and seeding needs
       //
-      recipeData.map(async (data: Prisma.RecipeCreateArgs['data']) => {
-        const record = await db.recipe.create({ data })
-        console.log(record)
-      })
-    )
+      [
+        ...data.map(async (data: Prisma.UserExampleCreateArgs['data']) => {
+          const record = await db.userExample.create({ data })
+          console.log(record)
+        }),
+        ...menuData.map(async (data: Prisma.MenuCreateArgs['data']) => {
+          const record = await db.menu.create({ data })
+          console.log(record)
+        }),
+        ...recipeData.map(async (data: Prisma.RecipeCreateArgs['data']) => {
+          const record = await db.recipe.create({ data })
+          console.log(record)
+        })
+      ]
+      )
 
 
   } catch (error) {
