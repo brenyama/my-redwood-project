@@ -8,7 +8,7 @@ generator client {
   binaryTargets = "native"
 }
 
-// Define your own datamodels here and run `yarn redwood prisma migrate dev`
+// Define your own datamodels here and run `yc`
 // to create migrations for them and apply to your dev DB.
 // TODO: Please remove the following example:
 model UserExample {
@@ -17,6 +17,42 @@ model UserExample {
   name  String?
 }
 
-// model Recipe {
-//   id
-// }
+model Recipe {
+  id              Int              @id @default(autoincrement())
+  name            String           @unique
+  recipeNutrients RecipeNutrient[]
+  MenuItem        MenuItem?
+  servingSize     Int
+  servingUnit     String
+}
+
+model RecipeNutrient {
+  id         Int      @id @default(autoincrement())
+  nutrient   Nutrient @relation(fields: [nutrientId], references: [id])
+  nutrientId Int      @unique
+  recipe     Recipe   @relation(fields: [recipeId], references: [id])
+  recipeId   Int
+  amount     Int
+}
+
+model Nutrient {
+  id             Int             @id @default(autoincrement())
+  name           String
+  baseUnit       String
+  recipeNutrient RecipeNutrient?
+}
+
+model Menu {
+  id        Int        @id @default(autoincrement())
+  date      DateTime
+  menuItems MenuItem[]
+}
+
+model MenuItem {
+  id           Int    @id @default(autoincrement())
+  recipe       Recipe @relation(fields: [recipeId], references: [id])
+  recipeId     Int    @unique
+  menu         Menu   @relation(fields: [menuId], references: [id])
+  menuId       Int
+  servingValue Int
+}
