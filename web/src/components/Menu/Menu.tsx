@@ -1,30 +1,14 @@
 import { useMutation } from '@redwoodjs/web'
 import MenuItemCell from 'src/components/MenuItemCell'
-import {QUERY as MENU_CELL_QUERY} from 'src/components/MenuCell'
-
-const CREATE_MENU_ITEM = gql`
-  mutation createMenuItemMutation($input: CreateMenuItemInput!) {
-    createMenuItem(input: $input) {
-      id,
-      recipeId,
-      menuId,
-    }
-  }
-`
 
 const Menu = ({
   menu,
+  setAddRecipes,
 }) => {
-  const [create] = useMutation(CREATE_MENU_ITEM)
-
   const {id, menuItems} = menu;
 
   const onAddMenuItem = e => {
-    create({ variables: { input: {
-      menuId: id,
-      recipeId: 1,
-      servingValue: 1,
-    } }, refetchQueries: [{query: MENU_CELL_QUERY, variables: { id: id }}] })
+    setAddRecipes(id);
   }
 
   return (

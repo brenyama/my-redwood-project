@@ -28,6 +28,7 @@ export const Failure = ({
 
 export const Success = ({
   menu,
-}: CellSuccessProps<FindMenuQuery, FindMenuQueryVariables>) => {
-  return <div className='p-3 flex-1 h-full'><Menu menu={menu} /></div>
+  setAddRecipes,
+}: CellSuccessProps<FindMenuQuery, FindMenuQueryVariables> & { setAddRecipes: React.Dispatch<(prevState: undefined) => undefined> }) => {
+  return <div className='p-3 flex-1 h-full'><Menu menu={menu} setAddRecipes={setAddRecipes} /></div>
 }

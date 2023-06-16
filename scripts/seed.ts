@@ -57,6 +57,11 @@ export default async () => {
       {name: 'Pepperoni Pizza', servingSize: 0, servingUnit: 'cups'},
       {name: 'Cheese Pizza', servingSize: 0, servingUnit: 'cups'},
       {name: 'Organic Apple', servingSize: 0, servingUnit: 'cups'},
+      {name: 'Kale Cesear Salad', servingSize: 0, servingUnit: 'cups'},
+      {name: 'Macoroni & Cheese', servingSize: 0, servingUnit: 'cups'},
+      {name: 'Garlic Broccoli', servingSize: 0, servingUnit: 'cups'},
+      {name: 'Sliced Apples', servingSize: 0, servingUnit: 'cups'},
+      {name: 'Banana', servingSize: 0, servingUnit: 'cups'},
     ]
 
     // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
