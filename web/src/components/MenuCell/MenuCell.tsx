@@ -1,5 +1,6 @@
 import type { FindMenuQuery, FindMenuQueryVariables } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+import Menu from '../Menu/Menu'
 
 export const QUERY = gql`
   query FindMenuQuery($id: Int!) {
@@ -22,5 +23,5 @@ export const Failure = ({
 export const Success = ({
   menu,
 }: CellSuccessProps<FindMenuQuery, FindMenuQueryVariables>) => {
-  return <div>{JSON.stringify(menu)}</div>
+  return <Menu menu={menu} />
 }

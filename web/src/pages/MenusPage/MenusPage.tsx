@@ -1,19 +1,18 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
+import MenuCell from 'src/components/MenuCell'
 
 const MenusPage = () => {
   return (
     <>
       <MetaTags title="Menus" description="Menus page" />
-
-      <h1>MenusPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/MenusPage/MenusPage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>menus</code>, link to me with `
-        <Link to={routes.menus()}>Menus</Link>`
-      </p>
+      <div className='flex flex-row h-full'>
+        <MenuCell id={1} />
+        <MenuCell id={2} />
+        <MenuCell id={3} />
+        <MenuCell id={4} />
+        <MenuCell id={5} />
+      </div>
     </>
   )
 }

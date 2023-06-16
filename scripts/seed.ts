@@ -56,6 +56,31 @@ export default async () => {
     //       }
     //     })
     //   }
+
+    const menuData: Prisma.MenuCreateArgs['data'][] = [
+      {date: new Date()},
+      {date: new Date()},
+      {date: new Date()},
+      {date: new Date()},
+      {date: new Date()},
+    ]
+    console.log(
+      "\nUsing the default './scripts/seed.{js,ts}' template\nEdit the file to add seed data\n"
+    )
+
+    // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
+    // @see: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
+    Promise.all(
+      //
+      // Change to match your data model and seeding needs
+      //
+      menuData.map(async (data: Prisma.MenuCreateArgs['data']) => {
+        const record = await db.menu.create({ data })
+        console.log(record)
+      })
+    )
+
+
   } catch (error) {
     console.warn('Please define your seed data.')
     console.error(error)
