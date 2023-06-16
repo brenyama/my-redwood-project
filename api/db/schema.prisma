@@ -16,3 +16,7 @@ model UserExample {
   email String  @unique
   name  String?
 }
+
+// model Recipe {
+//   id
+// }
